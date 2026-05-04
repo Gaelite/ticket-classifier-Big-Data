@@ -1,0 +1,6 @@
+{
+  "ticket_id": "tk-002",
+  "customer": "user@empresa.com",
+  "priority_score": 55,
+  "description": "There is an issue with the login page loading slowly"
+}

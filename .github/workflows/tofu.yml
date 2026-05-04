@@ -1,0 +1,51 @@
+name: OpenTofu CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  AWS_REGION: us-east-1
+  AWS_ROLE: arn:aws:iam::257209856308:role/ticket-classifier-big-data-gha
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  tofu:
+    name: Plan & Apply
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: "1.7.0"
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Tofu Init
+        run: tofu init
+
+      - name: Tofu Format Check
+        run: tofu fmt -check
+
+      - name: Tofu Validate
+        run: tofu validate
+
+      - name: Tofu Plan
+        run: tofu plan -out=tfplan
+
+      - name: Tofu Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: tofu apply -auto-approve tfplan

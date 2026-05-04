@@ -1,0 +1,6 @@
+{
+  "ticket_id": "tk-004",
+  "customer": "test@test.com",
+  "priority_score": 150,
+  "description": "This has an invalid score"
+}
