@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  AWS_ROLE: arn:aws:iam::257209856308:role/ticket-classifier-big-data-gha
+  AWS_ROLE: arn:aws:iam::257209856308:role/ticket-classifier-bigdata-gha
 
 permissions:
   id-token: write
