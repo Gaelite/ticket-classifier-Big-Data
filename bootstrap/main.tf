@@ -110,6 +110,7 @@ data "aws_iam_policy_document" "gha_iam" {
       "iam:CreateRole",
       "iam:DeleteRole",
       "iam:GetRole",
+      "iam:GetRolePolicy", 
       "iam:PassRole",
       "iam:TagRole",
       "iam:UntagRole",
