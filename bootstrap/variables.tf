@@ -12,7 +12,7 @@ variable "project_name" {
 variable "main_project_name" {
   type        = string
   description = "Prefijo del proyecto principal."
-  default     = "ticket-classifier"
+  default     = "ticket-classifier-bigdata"
 }
 
 variable "github_repo" {
