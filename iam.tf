@@ -55,8 +55,8 @@ resource "aws_iam_role_policy" "sfn_lambda" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect   = "Allow"
-      Action   = "lambda:InvokeFunction"
+      Effect = "Allow"
+      Action = "lambda:InvokeFunction"
       Resource = [
         module.validate_lambda.function_arn,
         module.classify_lambda.function_arn,
